@@ -78,9 +78,9 @@ static PyObject* simple_print(PyObject* self, PyObject* args)
         return NULL;
     }
 
-    printf(s1);
+    printf("%s", s1);
     printf("\n");
-    printf(s2);
+    printf("%s", s2);
     printf("\n");
 
     return Py_None;
