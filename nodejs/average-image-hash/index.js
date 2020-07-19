@@ -5,10 +5,10 @@ async function averageHash(filePath, hashSize = 8) {
   const buffer = await fs.promises.readFile(filePath);
 
   const resizedBuffer = await sharp(buffer)
-    .resize({ width = hashSize, height = hashSize })
+    .resize({ width: hashSize, height: hashSize })
     .ensureAlpha()
     //.greyScale()
-    .extractChannel(3)
+    // .extractChannel(3)
     .toColourspace("b-w")
     .raw()
     .toBuffer();
