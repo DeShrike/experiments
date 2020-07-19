@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Sends an email with disk usage summary.
+# see https://www.youtube.com/watch?v=P05yr5QeGz4
+
+# Sending an email
+# -f = from
+# -t = to
+# -u = subject
+# -s = server
+# -xu = username
+# -xp = password
+# -m = message
+# -o = tls=yes
+
+GREEN="\e[1;32m"
+RED="\e[1;31m"
+RESET="\e[0m"
+
+SMTPFROM="??????@gmail.com"
+SMTPTO="??????@gmail.com"
+SMTPSERVER="smtp.googlemail.com:587"
+SMTPSERVER="smtp.gmail.com:587"
+SMTPSECURITY="tls=yes"
+SMTPUSER="???????@gmail.com"
+SMTPPASSWORD="?????????"
+SMTPPASSWORD=$(eval echo $SMTPPASSWORD | base64 --decode)
+
+MESSAGESUBJECT="Disk Usage on pi-lite !!"
+
+TMPFILE=/tmp/diskusage.txt
+LOGFILE=/tmp/diskusage.log
+
+echo "<html><body><pre style='font-size:20px;'>" > $TMPFILE
+df -h | grep Filesystem >> $TMPFILE
+df -h | grep root >> $TMPFILE
+echo "</pre></body></html>" >> $TMPFILE
+
+sendEmail -f $SMTPFROM -t $SMTPTO -u $MESSAGESUBJECT -o message-file=$TMPFILE -s $SMTPSERVER -xu $SMTPUSER -xp $SMTPPASSWORD -o $SMTPSECURITY > $LOGFILE
+
+rm $TMPFILE
+
+if grep -q successfully "$LOGFILE";
+then
+    echo -e "${GREEN}Email was sent !${RESET}"
+    rm $LOGFILE
+else
+    echo -e "${RED}Email was NOT sent !${RESET} See ${LOGFILE}"
+fi
+

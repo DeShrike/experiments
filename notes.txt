@@ -1,0 +1,74 @@
+# Restart Samba:
+
+	sudo /etc/init.d/samba restart
+
+	sudo systemctl restart smbd.service
+
+# Full Upgrade
+
+	sudo apt-get update
+
+	sudo apt-get upgrade -y
+
+	sudo apt-get dist-upgrade -y
+
+	sudo rpi-update
+
+# Python
+
+	Install pip
+
+		sudo apt install python3-pip -y
+
+	Add aliases to .bashrc
+		alias python=python3
+		alias pip=pip3
+
+	Installing PIL
+		sudo apt-get install libopenjp2-7
+                sudo apt install libtiff5
+		pip3 install pillow
+
+
+# Run something at boot
+
+	sudo nano /etc/rc.local
+	  su pi -c 'node /home/pi/myapp/server.js < /dev/null $'
+
+# Find architecture
+	
+	uname -m
+
+# Link global node modules to local project
+
+	npm link express
+	npm link ws
+
+# Read temperature
+
+	vcgencmd measure_temp
+
+# Installing opencv
+
+sudo apt install libatlas3-base libsz2 libharfbuzz0b libtiff5 libjasper1 libilmbase12 libopenexr22 libilmbase12 libgstreamer1.0-0 libavcodec57 libavformat57 libavutil55 libswscale4 libqtgui4 libqt4-test libqtcore4
+sudo pip3 install opencv-contrib-python libwebp6
+
+sudo apt install libhdf5-100
+
+sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+sudo apt-get install libgtk2.0-dev libgtk-3-dev
+sudo apt-get install libatlas-base-dev gfortran
+
+# Installing mail packages
+
+sudo apt-get install sendEmail
+sudo apt-get install libio-socket-ssl-perl
+sudo apt-get install libnet-ssleay-perl
+
+
+# Generate Password
+
+tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c ${1:-14};
+
