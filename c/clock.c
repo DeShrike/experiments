@@ -38,7 +38,7 @@ int CurrentColor = -1;
 
 int Colors[] = { 0 /*5*/, 41, 42, 43, 44, 45, 46, 47 };
 
-int CharsWidths[CHARS] = {  4,   3,   4,   4,   4,   4,   4,   3,   4,   4,   1,   3  };
+int CharsWidths[CHARS] = {  4,   2,   4,   4,   4,   4,   4,   3,   4,   4,   1,   2  };
 char Chars[CHARS] =      { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ' ' };
 int CharData[CHARS][LINES_PER_CHAR][COLUMNS_PER_CHAR] = 
 {
@@ -56,7 +56,7 @@ int CharData[CHARS][LINES_PER_CHAR][COLUMNS_PER_CHAR] =
         { 1, 1, 0, 0 }, 
         { 0, 1, 0, 0 }, 
         { 0, 1, 0, 0 }, 
-        { 1, 1, 1, 0 }
+        { 0, 1, 0, 0 }
     },
     { 
         // 2
@@ -324,6 +324,18 @@ void ShowTime()
     time(&rawtime);
     timeinfo = localtime(&rawtime);
 
+    /*
+    printf("Hour: %d \n", timeinfo->tm_hour);
+    printf("Minute: %d \n", timeinfo->tm_min);
+    printf("Second: %d \n", timeinfo->tm_sec);
+    printf("Month: %d \n", timeinfo->tm_mon);
+    printf("Year: %d \n", timeinfo->tm_year);
+    printf("Day: %d \n", timeinfo->tm_mday);
+    printf("WeekDay: %d \n", timeinfo->tm_wday);
+    printf("YearDay: %d \n", timeinfo->tm_yday);
+    printf("Current local time and date: %s", asctime(timeinfo));
+    */
+
     char line1[10];
     sprintf(line1, "%02d:%02d", timeinfo->tm_hour, timeinfo->tm_min);
     char line2[10];
@@ -351,18 +363,6 @@ int main(int argc, char *argv[])
 
     printf(CLEARSCREEN);
     printf(HIDECURSOR);
-
-    /*
-    printf("Hour: %d \n", timeinfo->tm_hour);
-    printf("Minute: %d \n", timeinfo->tm_min);
-    printf("Second: %d \n", timeinfo->tm_sec);
-    printf("Month: %d \n", timeinfo->tm_mon);
-    printf("Year: %d \n", timeinfo->tm_year);
-    printf("Day: %d \n", timeinfo->tm_mday);
-    printf("WeekDay: %d \n", timeinfo->tm_wday);
-    printf("YearDay: %d \n", timeinfo->tm_yday);
-    printf("Current local time and date: %s", asctime(timeinfo));
-    */
 
     while (keepRunning)
     {
