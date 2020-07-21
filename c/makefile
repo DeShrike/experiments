@@ -21,5 +21,8 @@ branchless: branchless.c
 doomfire: doomfire.c
 	$(CC) -o doomfire doomfire.c -lm
 
+clock: clock.c
+	$(CC) -o clock clock.c -lm
+
 clean:
 	rm *.o
