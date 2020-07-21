@@ -24,5 +24,8 @@ doomfire: doomfire.c
 clock: clock.c
 	$(CC) -o clock clock.c -lm
 
+plasma: plasma.c
+	$(CC) -o plasma plasma.c -lm
+
 clean:
 	rm *.o
