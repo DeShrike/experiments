@@ -27,5 +27,8 @@ clock: clock.c
 plasma: plasma.c
 	$(CC) -o plasma plasma.c -lm
 
+bunny: bunny.c
+	$(CC) -o bunny bunny.c
+
 clean:
 	rm *.o
