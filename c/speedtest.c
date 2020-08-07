@@ -12,10 +12,10 @@ char BRIGHTRED[] = "\033[31;1m";
 char RESET[] = "\033[0m";
 char INVERSE[] = "\033[5m";
 
-void int_test_real(long long max)
+void int_test_real(long max)
 {
    long long result = 0;
-   for (long long num = 0; num < max; num++)
+   for (long num = 0; num < max; num++)
    {
       if (num % 3 == 0 || num % 5 == 0)
       {
@@ -42,7 +42,7 @@ void float_test_real(long max)
 
 void int_test()
 {
-  int_test_real(10000000UL);
+  int_test_real(10000000L);
 }
 
 void float_test()
