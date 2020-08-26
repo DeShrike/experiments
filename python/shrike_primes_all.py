@@ -5,15 +5,15 @@ import random
 FILENAME = "shrike_primes_all.txt"
 
 class unique_element:
-    def __init__(self,value,occurrences):
+    def __init__(self, value, occurrences):
         self.value = value
         self.occurrences = occurrences
 
 def perm_unique(elements):
-    eset=set(elements)
-    listunique = [unique_element(i,elements.count(i)) for i in eset]
-    u=len(elements)
-    return perm_unique_helper(listunique,[0]*u,u-1)
+    eset = set(elements)
+    listunique = [unique_element(i, elements.count(i)) for i in eset]
+    u = len(elements)
+    return perm_unique_helper(listunique, [0] * u, u - 1)
 
 def perm_unique_helper(listunique,result_list,d):
     if d < 0:
@@ -21,11 +21,11 @@ def perm_unique_helper(listunique,result_list,d):
     else:
         for i in listunique:
             if i.occurrences > 0:
-                result_list[d]=i.value
-                i.occurrences-=1
-                for g in  perm_unique_helper(listunique,result_list,d-1):
+                result_list[d] = i.value
+                i.occurrences -= 1
+                for g in  perm_unique_helper(listunique, result_list, d - 1):
                     yield g
-                i.occurrences+=1
+                i.occurrences += 1
 
 def find_prime(digits):
     n = ""
@@ -47,6 +47,7 @@ def find_prime(digits):
 def find_shrike_prime(alphabet):
 
     print(f"Testing {alphabet}")
+    primes = []
 
     has_odd = False
     digits = []
@@ -56,17 +57,17 @@ def find_shrike_prime(alphabet):
             has_odd = True
 
     if has_odd == False:
-        return None
+        return primes
         
     print(digits)
 
-    primes = []
     ix = 0
-
+    lastcount = 0
     for p in perm_unique(digits):
         ix += 1
-        if ix % 100000 == 0:
-            print(f"Testing: {ix}", end = "\r")
+        if ix % 100000 == 0 or lastcount != len(primes):
+            lastcount = len(primes)
+            print(f"Testing: {ix}  Found {lastcount}", end = "\r")
         number = int("".join([str(elem) for elem in p]))
         if number % 2 == 0:
             continue
@@ -74,25 +75,28 @@ def find_shrike_prime(alphabet):
             if is_prime(number):
                 primes.append(number)
                 # print("Prime !", number)
-                return number
-    return None
+
+    return primes
 
 def append_to_file(name, value):
-    print(value)
     with open(name, "a") as file:
         file.write(value)
-        file.write("\r\n")
 
 def find_all():
     start = [x for x in range(1,9 + 1)]
     for take in range(1, 9 + 1):
         alphabets = itertools.combinations(start, take)
         for alphabet in alphabets:
-            n = find_shrike_prime(alphabet)
-            if n is None:
-                msg = f"{alphabet} => None"
+            primes_found = find_shrike_prime(alphabet)
+            if len(primes_found) == 0:
+                msg = f"{alphabet} =>\tNone\n"
+                print(msg)
             else:
-                msg = f"{alphabet} => {n}"
+                primes_found.sort()
+                msg = f"{alphabet} =>\t{len(primes_found)}\tprimes\n"
+                print("\n", msg, primes_found[0])
+                for num in primes_found:
+                    msg += f"\t{num}\n"
             append_to_file(FILENAME, msg)
 
 
