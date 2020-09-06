@@ -77,4 +77,6 @@ int main(int argc, char *argv[])
   printf("unsigned long size : %d \n", sizeof(unsigned));
   printf("long long size : %d \n", sizeof(long long));
   */
+
+  return 0;
 }

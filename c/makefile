@@ -4,7 +4,7 @@ numtest: numtest.c
 	$(CC) -o numtest numtest.c
 
 speedtest: speedtest.c
-	$(CC) -o speedtest speedtest.c -lm
+	$(CC) -o speedtest speedtest.c -lm --static
 
 ansitest: ansitest.c
 	$(CC) -o ansitest ansitest.c
