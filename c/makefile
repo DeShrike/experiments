@@ -1,5 +1,14 @@
 CC=gcc
 
+test3: test3.c
+	$(CC) -o test3 test3.c
+
+test2: test2.c
+	$(CC) -o test2 test2.c
+
+test1: test1.c
+	$(CC) -o test1 test1.c
+
 numtest: numtest.c
 	$(CC) -o numtest numtest.c
 
