@@ -1,61 +1,164 @@
 CC=gcc
+AR=ar
 
-oserver: oserver.c oserver.h oserver_host.c
-	$(CC) -o oserver_host oserver_host.c oserver.c
+all: forktest pipetest oserver_host pthread test1 test2 test3 test4 numtest ansitest speedtest filetest testpin branchless doomfire clock plasma bunny
 
-forktest: forktest.c
-	$(CC) -o forktest forktest.c
+###################################00
 
-pipetest: pipetest.c
-	$(CC) -o pipetest pipetest.c
+forktest: forktest.o
+	$(CC) -o forktest forktest.o
 
-pthread: pthread.c
-	$(CC) -lpthread -o pthread pthread.c
+forktest.o: forktest.c
+	$(CC) -c forktest.c
 
-test4: test4.c
-	$(CC) -o test4 test4.c
+###################################00
 
-test3: test3.c
-	$(CC) -o test3 test3.c
+pipetest: pipetest.o
+	$(CC) -o pipetest pipetest.o
 
-test2: test2.c
-	$(CC) -o test2 test2.c
+pipetest.o: pipetest.c
+	$(CC) -c pipetest.c
 
-test1: test1.c
-	$(CC) -o test1 test1.c
+###################################00
 
-numtest: numtest.c
-	$(CC) -o numtest numtest.c
+oserver_host: oserver.o oserver_host.o
+	$(CC) -o oserver_host oserver_host.o oserver.o
 
-speedtest: speedtest.c
-	$(CC) -o speedtest speedtest.c -lm --static
+oserver.o: oserver.c oserver.h
+	$(CC) -c oserver.c
 
-ansitest: ansitest.c
-	$(CC) -o ansitest ansitest.c
+oserver_host.o: oserver_host.c oserver.h
+	$(CC) -c oserver_host.c
 
-blinker: blinker.c
-	$(CC) -o blinker blinker.c -l wiringPi
+###################################00
 
-filetest: filetest.c
-	$(CC) filetest.c -o filetest
+pthread: pthread.o
+	$(CC) -lpthread -o pthread pthread.o
 
-testpin: testpin.c
-	$(CC) testpin.c -o testpin
+pthread.o: pthread.c
+	$(CC) -c pthread.c
 
-branchless: branchless.c
-	$(CC) branchless.c -o branchless
+###################################00
 
-doomfire: doomfire.c
-	$(CC) -o doomfire doomfire.c -lm
+test4: test4.o
+	$(CC) -o test4 test4.o
 
-clock: clock.c
-	$(CC) -o clock clock.c -lm
+test4.o: test4.c
+	$(CC) -c test4.c
 
-plasma: plasma.c
-	$(CC) -o plasma plasma.c -lm
+###################################00
 
-bunny: bunny.c
-	$(CC) -o bunny bunny.c
+test3: test3.o
+	$(CC) -o test3 test3.o
+
+test3.o: test3.c
+	$(CC) -c test3.c
+
+###################################00
+
+test2: test2.o
+	$(CC) -o test2 test2.o
+
+test2.o: test2.c
+	$(CC) -c test2.c
+
+###################################00
+
+test1: test1.o
+	$(CC) -o test1 test1.o
+
+test1.o: test1.c
+	$(CC) -c test1.c
+
+###################################00
+
+numtest: numtest.o
+	$(CC) -o numtest numtest.o
+
+numtest.o: numtest.c
+	$(CC) -c numtest.c
+
+###################################00
+
+speedtest: speedtest.o
+	$(CC) -o speedtest speedtest.o -lm --static
+
+speedtest.o: speedtest.c
+	$(CC) -c speedtest.c
+
+###################################00
+
+ansitest: ansitest.o
+	$(CC) -o ansitest ansitest.o
+
+ansitest.o: ansitest.c
+	$(CC) -c ansitest.c
+
+###################################00
+
+blinker: blinker.o
+	$(CC) -o blinker blinker.o -l wiringPi
+
+blinker.o: blinker.c
+	$(CC) -c blinker.c
+
+###################################00
+
+filetest: filetest.o
+	$(CC) -o filetest filetest.o
+
+filetest.o: filetest.c
+	$(CC) -c filetest.c
+
+###################################00
+
+testpin: testpin.o
+	$(CC) -o testpin testpin.o
+
+testpin.o: testpin.c
+	$(CC) -c testpin.c
+
+###################################00
+
+branchless: branchless.o
+	$(CC) -o branchless branchless.o
+
+branchless.o: branchless.c
+	$(CC) -c branchless.c
+
+###################################00
+
+doomfire: doomfire.o
+	$(CC) -o doomfire doomfire.o -lm
+
+doomfire.o: doomfire.c
+	$(CC) -c doomfire.c
+
+###################################00
+
+clock: clock.o
+	$(CC) -o clock clock.o -lm
+
+clock.o: clock.c
+	$(CC) -c clock.c
+
+###################################00
+
+plasma: plasma.o
+	$(CC) -o plasma plasma.o -lm
+
+plasma.o: plasma.c
+	$(CC) -c plasma.c
+
+###################################00
+
+bunny: bunny.o
+	$(CC) -o bunny bunny.o
+
+bunny.o: bunny.c
+	$(CC) -c bunny.c
+
+###################################00
 
 clean:
 	rm *.o
