@@ -72,3 +72,11 @@ sudo apt-get install libnet-ssleay-perl
 
 tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c ${1:-14};
 
+# Model And Versions
+
+cat /etc/os-release
+cat /etc/debian_version
+uname -a
+cat /proc/cpuinfo
+dmesg | grep model
+cat /proc/device-tree/model
