@@ -1,5 +1,8 @@
 CC=gcc
 
+oserver: oserver.c oserver.h oserver_host.c
+	$(CC) -o oserver_host oserver_host.c oserver.c
+
 forktest: forktest.c
 	$(CC) -o forktest forktest.c
 
