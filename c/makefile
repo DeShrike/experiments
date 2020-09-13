@@ -1,5 +1,17 @@
 CC=gcc
 
+forktest: forktest.c
+	$(CC) -o forktest forktest.c
+
+pipetest: pipetest.c
+	$(CC) -o pipetest pipetest.c
+
+pthread: pthread.c
+	$(CC) -lpthread -o pthread pthread.c
+
+test4: test4.c
+	$(CC) -o test4 test4.c
+
 test3: test3.c
 	$(CC) -o test3 test3.c
 

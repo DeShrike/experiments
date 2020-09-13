@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <float.h>
 #include <locale.h>
 
 #define USHRT_MIN 0
@@ -29,6 +30,9 @@ int main(int argc, char *argv[])
    printf("LLONG_MIN/MAX  : %'27lld - %'27lld \n", (long long) LLONG_MIN, (long long) LLONG_MAX);
    printf("ULLONG_MIN/MAX : %'27llu - %'27llu \n", (unsigned long long) ULLONG_MIN, (unsigned long long) ULLONG_MAX);
 
+   printf("FLT_MIN/MAX    : %'27e - %'27e \n", (float) FLT_MIN, (float) FLT_MAX);
+   printf("DBL_MIN/MAX    : %'27e - %'27e \n", (double) DBL_MIN, (double) DBL_MAX);
+
    printf("\n");
 
    printf("signed char / char             : %d bytes, %d bytes \n", sizeof(signed char), sizeof(char));
@@ -36,7 +40,6 @@ int main(int argc, char *argv[])
    printf("int / unsigned int             : %d bytes, %d bytes \n", sizeof(int), sizeof(unsigned int));
    printf("long / unsigned long           : %d bytes, %d bytes \n", sizeof(long), sizeof(unsigned long));
    printf("long long / unsigned long long : %d bytes, %d bytes \n", sizeof(long long), sizeof(unsigned long long));
-   printf("\n");
    printf("float                          : %d bytes \n", sizeof(float));
    printf("double                         : %d bytes \n", sizeof(double));
 
