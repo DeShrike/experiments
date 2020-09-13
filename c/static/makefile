@@ -3,6 +3,9 @@ AR=ar
 
 all: test
 
+rmbin:
+	rm test
+
 test: test.o libbasic.a
 	$(CC) -o test -L . test.o -lbasic
 

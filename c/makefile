@@ -3,6 +3,26 @@ AR=ar
 
 all: forktest pipetest oserver_host pthread test1 test2 test3 test4 numtest ansitest speedtest filetest testpin branchless doomfire clock plasma bunny
 
+rmbin:
+	rm forktest
+	rm pipetest
+	rm oserver_host
+	rm pthread
+	rm test1
+	rm test2
+	rm test3
+	rm test4
+	rm numtest
+	rm ansitest
+	rm speedtest
+	rm filetest
+	rm testpin
+	rm branchless
+	rm doomfire
+	rm clock
+	rm plasma
+	rm bunny
+
 ###################################00
 
 forktest: forktest.o
