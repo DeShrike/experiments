@@ -67,7 +67,6 @@ sudo apt-get install sendEmail
 sudo apt-get install libio-socket-ssl-perl
 sudo apt-get install libnet-ssleay-perl
 
-
 # Generate Password
 
 tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c ${1:-14};
@@ -80,3 +79,12 @@ uname -a
 cat /proc/cpuinfo
 dmesg | grep model
 cat /proc/device-tree/model
+
+# ALiases
+
+alias warm="/opt/vc/bin/vcgencmd measure_temp"
+alias gpom="git push origin master"
+alias python=/usr/bin/python3
+alias pip=/usr/bin/pip3
+
+
