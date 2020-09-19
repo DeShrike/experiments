@@ -7,6 +7,8 @@
 using namespace std;
 using namespace std::chrono;
 
+int correct = 0;
+
 bool ProcessOnePermutation(int index, int *data, int size)
 {
 	/*if (index % 100000 == 0)
@@ -19,6 +21,36 @@ bool ProcessOnePermutation(int index, int *data, int size)
 
 		cout << endl;
 	}*/
+	
+	int c = 1;
+	int last = data[0];
+	int start = 1; 
+	if (last == size - 1)
+	{
+		last = data[1];
+		start = 2;
+	}
+	
+	for (int i = start; i < size; i++)
+	{
+		if (data[i] > last)
+		{
+			c++;
+			last = data[i];
+		}
+	}
+	
+	if (c == size - 1)
+	{
+		correct++;
+		cout << setw(3) << index << ": ";
+		for (int i = 0; i < size; i++)
+		{
+			cout << data[i] << " ";
+		}
+
+		cout << " -> " << c << endl;
+	}
 
 	return true;
 }
@@ -28,12 +60,14 @@ void CardOrder(int size)
 	Permutations permutations(size, ProcessOnePermutation);
 	permutations.Iterate();
 
-	cout << "Permutation count: " << permutations.Length() << endl;
+	int l = permutations.Length();
+	cout << "Permutation count: " << l << endl;
+	cout << "Correct: " << correct << " (" << (correct / (float)l * 100.0) << " %)"<< endl;
 }
 
 int main()
 {
-	const int s = 11;
+	const int s = 4;
 
 	cout << "CardOrder with " << s << " cards" << endl;
 
