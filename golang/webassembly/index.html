@@ -1,0 +1,52 @@
+<!--
+Copyright 2018 The Go Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Go WebAssembly</title>
+  </head>
+
+  <body>
+    <script src="wasm_exec.js"></script>
+
+    <script>
+      if (!WebAssembly.instantiateStreaming) {
+        // polyfill
+        WebAssembly.instantiateStreaming = async (resp, importObject) => {
+          const source = await (await resp).arrayBuffer();
+          return await WebAssembly.instantiate(source, importObject);
+        };
+      }
+
+      const go = new Go();
+      let mod, inst;
+      WebAssembly.instantiateStreaming(fetch("lib.wasm"), go.importObject).then(
+        async result => {
+          mod = result.module;
+          inst = result.instance;
+          await go.run(inst);
+        }
+      );
+
+      async function run() {
+        await go.run(inst);
+        inst = await WebAssembly.instantiate(mod, go.importObject); // reset instance
+      }
+    </script>
+
+    <h1>WebAssembly with Go</h1>
+
+    <input type="text" id="value1" value="13" />
+    <input type="text" id="value2" value="29"/>
+    <button onClick="add2('value1','value2', 'result');" id="add2Button">Add 2</button>
+    <input type="text" id="result"/>
+
+    <br/>
+
+    <button onClick="add(29, 13);" id="addButton">Add</button>
+    <button onClick="subtract(29, 13);" id="subtractButton">Subtract</button>
+  </body>
+</html>
