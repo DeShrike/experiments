@@ -1,0 +1,43 @@
+#Please ignore this
+#ignore
+size 640 480
+
+#camera 3 0 3 0 0 0 -3 0 3 60
+#camera 0 3 3 0 0 0 0 -3 3 60
+camera 0 0 0.1 0 0 1 1 0 0 60
+point 3 0 3 1 1 1
+directional 0 0 5 1 1 1
+
+maxverts 4
+
+vertex -1 -1 0
+vertex -1 1 0
+vertex 1 1 0
+vertex 1 -1 0
+
+pushTransform
+scale 2 2 2
+tri 0 1 2
+diffuse 0.7 0.7 0.7
+specular 0.5 0.5 0.5
+shininess 10
+tri 0 2 3
+diffuse 0.7 0.7 0.7
+specular 0.5 0.5 0.5
+shininess 10
+popTransform
+
+sphere 0 -1 2 0.3
+diffuse 0 0 0.4
+specular 0 0 0.2
+shininess 40
+
+sphere 0 0 2 0.3
+diffuse 0.4 0 0
+specular 0.2 0 0
+shininess 40
+
+sphere 0 1 2 0.3
+diffuse 0 0.4 0 
+specular 0 .2 0
+shininess 40

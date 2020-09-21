@@ -1,12 +1,19 @@
 CC=c++
 
-all: hello mem cardorder fact
+all: hello mem cardorder fact raytracer
 
 rmbin:
 	rm hello
 	rm cardorder
 	rm mem
 	rm fact
+	rm raytracer
+
+raytracer: raytracer.o
+	$(CC) -o raytracer raytracer.o
+
+raytracer.o: raytracer.cpp
+	$(CC) -c -O3 raytracer.cpp
 
 fact: fact.o factorial.o
 	$(CC) -o fact fact.o factorial.o -lm

@@ -1,0 +1,36 @@
+#Please ignore this
+#ignore
+size 640 480
+
+camera 0 0 4 0 0 0 0 1 0 30
+#camera 0 -2 1 0 0 0 0 1 0 30
+#camera -4 0 1 0 0 1 0 0 1 45
+#camera -4 -4 4 1 0 0 0 1 0 30
+
+maxverts 4
+
+vertex -1 -1 0 
+vertex +1 -1 0
+vertex +1 +1 0
+vertex -1 +1 0
+
+point 0 -3 3 1 1 1
+tri 0 1 2
+specular 0.5 0.5 0.5
+diffuse 0.5 0.5 0.5
+shininess 30
+
+tri 0 2 3
+specular 0.5 0.5 0.5
+diffuse 0.5 0.5 0.5
+shininess 30
+
+sphere -0.5 -0.5 0.5 0.15
+specular 0.0 0.0 0.0
+diffuse 0.5 0.5 0.5
+shininess 30
+
+sphere 0 -.5 .5 0.15
+specular 0.2 0.2 0.2
+diffuse 0.5 0.5 0.5
+shininess 30
