@@ -22,6 +22,7 @@ rmbin:
 	rm clock
 	rm plasma
 	rm bunny
+	rm lines
 
 ###################################00
 
@@ -72,7 +73,7 @@ test3: test3.o
 	$(CC) -o test3 test3.o
 
 test3.o: test3.c
-	$(CC) -c test3.c
+	$(CC) -c -O3 test3.c
 
 ###################################00
 
@@ -101,10 +102,10 @@ numtest.o: numtest.c
 ###################################00
 
 speedtest: speedtest.o
-	$(CC) -o speedtest speedtest.o -lm --static
+	$(CC) -o speedtest speedtest.o -lm
 
 speedtest.o: speedtest.c
-	$(CC) -c speedtest.c
+	$(CC) -c -O3 speedtest.c
 
 ###################################00
 
@@ -156,6 +157,14 @@ doomfire.o: doomfire.c
 
 ###################################00
 
+lines: lines.o
+	$(CC) -o lines lines.o -lm
+
+lines.o: lines.c
+	$(CC) -c lines.c
+
+###################################00
+
 clock: clock.o
 	$(CC) -o clock clock.o -lm
 
@@ -168,7 +177,7 @@ plasma: plasma.o
 	$(CC) -o plasma plasma.o -lm
 
 plasma.o: plasma.c
-	$(CC) -c plasma.c
+	$(CC) -c -O3 plasma.c
 
 ###################################00
 
