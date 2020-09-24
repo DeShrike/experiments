@@ -23,6 +23,15 @@ rmbin:
 	rm plasma
 	rm bunny
 	rm lines
+	rm chartest
+
+###################################00
+
+chartest: chartest.o
+	$(CC) -o chartest chartest.o
+
+chartest.o: chartest.c
+	$(CC) -c chartest.c
 
 ###################################00
 
