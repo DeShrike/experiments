@@ -33,7 +33,7 @@
 # Run something at boot
 
 	sudo nano /etc/rc.local
-	  su pi -c 'node /home/pi/myapp/server.js < /dev/null $'
+	su pi -c 'node /home/pi/myapp/server.js < /dev/null $'
 
 # Find architecture
 	
@@ -87,4 +87,14 @@ alias gpom="git push origin master"
 alias python=/usr/bin/python3
 alias pip=/usr/bin/pip3
 
+# SSH Login with RSA
+
+cd
+mkdir .ssh
+chmod 700 .ssh
+cd .ssh
+touch authorized_keys
+chmod 600 authorized_keys
+
+now paste public RSA SSH key in this file
 
