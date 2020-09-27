@@ -460,7 +460,11 @@ int BatchRun(int batchSize)
 
     for (int g = 0; g < batchSize; g++)
     {
-        printf("Game %d ", g + 1);
+        if ((g % 1000) == 0)
+        {
+        	printf("Game %d ", g + 1);
+    	}
+
         Init();
         Generation = 0;
         while (keepRunning)
@@ -476,7 +480,10 @@ int BatchRun(int batchSize)
             }
         }
 
-        printf("Stable after %d Generations\n", Generation);
+        if ((g % 1000) == 0)
+        {
+        	printf("Stable after %d Generations\n", Generation);
+    	}
 
         if (Generation < GenerationLimit)
         {
@@ -484,12 +491,14 @@ int BatchRun(int batchSize)
             {
                 HighestGeneration = Generation;
                 CopyTo(StartState, HighestState);
+			    SaveGrid(HighestState, HighestGeneration);
             }
 
             if (Generation < LowestGeneration)
             {
                 LowestGeneration = Generation;
                 CopyTo(StartState, LowestState);
+			    SaveGrid(LowestState, LowestGeneration);
             }
         }
         else
