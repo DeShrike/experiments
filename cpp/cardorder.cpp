@@ -21,16 +21,16 @@ bool ProcessOnePermutation(int index, int *data, int size)
 
 		cout << endl;
 	}*/
-	
+
 	int c = 1;
 	int last = data[0];
-	int start = 1; 
+	int start = 1;
 	if (last == size - 1)
 	{
 		last = data[1];
 		start = 2;
 	}
-	
+
 	for (int i = start; i < size; i++)
 	{
 		if (data[i] > last)
@@ -39,7 +39,7 @@ bool ProcessOnePermutation(int index, int *data, int size)
 			last = data[i];
 		}
 	}
-	
+
 	if (c == size - 1)
 	{
 		correct++;

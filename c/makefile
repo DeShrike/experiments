@@ -1,7 +1,7 @@
 CC=gcc
 AR=ar
 
-all: forktest pipetest oserver_host pthread test1 test2 test3 test4 numtest ansitest speedtest filetest testpin branchless doomfire clock plasma bunny
+all: forktest pipetest oserver_host pthread test1 test2 test3 test4 numtest ansitest speedtest filetest testpin branchless doomfire clock plasma bunny lines chartest
 
 rmbin:
 	rm forktest
