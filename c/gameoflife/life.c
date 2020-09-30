@@ -40,6 +40,10 @@ int CurrentColor = -1;
 char PreviousGrid[HEIGHT][WIDTH];
 char Mem1[HEIGHT][WIDTH];
 char Mem2[HEIGHT][WIDTH];
+char Mem3[HEIGHT][WIDTH];
+char Mem4[HEIGHT][WIDTH];
+char Mem5[HEIGHT][WIDTH];
+char Mem6[HEIGHT][WIDTH];
 char StartState[HEIGHT][WIDTH];
 
 char HighestState[HEIGHT][WIDTH];
@@ -123,7 +127,11 @@ void CopyGridToPrevious()
         for (int x = 0; x < WIDTH; x++)
         {
             Mem1[y][x] = Mem2[y][x];
-            Mem2[y][x] = PreviousGrid[y][x];
+            Mem2[y][x] = Mem3[y][x];
+            Mem3[y][x] = Mem4[y][x];
+            Mem4[y][x] = Mem5[y][x];
+            Mem5[y][x] = Mem6[y][x];
+            Mem6[y][x] = PreviousGrid[y][x];
             PreviousGrid[y][x] = Grid[y][x];
         }
     }
@@ -137,6 +145,96 @@ bool CheckIfStable()
         for (int x = 0; x < WIDTH; x++)
         {
             if (Mem1[y][x] != Grid[y][x])
+            {
+                stable = false;
+                break;
+            }
+        }
+    }    
+
+    if (stable)
+    {
+        return true;
+    }
+
+    stable = true;
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (Mem2[y][x] != Grid[y][x])
+            {
+                stable = false;
+                break;
+            }
+        }
+    }    
+
+    if (stable)
+    {
+        return true;
+    }
+
+    stable = true;
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (Mem3[y][x] != Grid[y][x])
+            {
+                stable = false;
+                break;
+            }
+        }
+    }    
+
+    if (stable)
+    {
+        return true;
+    }
+
+    stable = true;
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (Mem4[y][x] != Grid[y][x])
+            {
+                stable = false;
+                break;
+            }
+        }
+    }    
+
+    if (stable)
+    {
+        return true;
+    }
+
+    stable = true;
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (Mem5[y][x] != Grid[y][x])
+            {
+                stable = false;
+                break;
+            }
+        }
+    }    
+
+    if (stable)
+    {
+        return true;
+    }
+
+    stable = true;
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (Mem6[y][x] != Grid[y][x])
             {
                 stable = false;
                 break;
@@ -214,6 +312,15 @@ void CopyTo(char (*from)[WIDTH], char (*to)[WIDTH])
             to[y][x] = from[y][x];
         }
     }
+}
+
+void WaitForEnter()
+{
+	MoveCursor(1, 1);
+	printf("%sPress ENTER to start%s", BRIGHTRED, RESET);
+	getchar();
+	MoveCursor(1, 1);
+	printf("                          ");
 }
 
 void Init()
@@ -326,6 +433,8 @@ bool Life(bool show)
 
     CopyGridToPrevious();
 
+    // WaitForEnter();
+
     return true;
 }
 
@@ -334,21 +443,12 @@ void intHandler(int dummy)
     keepRunning = 0;
 }
 
-void WaitForEnter()
-{
-	MoveCursor(1, 1);
-	printf("%sPress ENTER to start%s", BRIGHTRED, RESET);
-	getchar();
-	MoveCursor(1, 1);
-	printf("                          ");
-}
-
 void LoadGrid(char *filename)
 {
     FILE *fp = fopen(filename, "r");
-	if (fp == NULL)	
+	if (fp == NULL)
 	{
-		fprintf(stderr, "Could not open file %s: %d\n", filename, errno);	
+		fprintf(stderr, "Could not open file %s: %d\n", filename, errno);
 		// perror("Error printed by perror");
       	// fprintf(stderr, "Error opening file: %s\n", strerror( errnum ));
       	return;
@@ -357,6 +457,12 @@ void LoadGrid(char *filename)
     char buffer[WIDTH * HEIGHT];
 	size_t read = fread(buffer, sizeof(char), WIDTH * HEIGHT, fp);
     fclose(fp);
+
+    if (read != sizeof(char) * WIDTH * HEIGHT)
+    {
+		fprintf(stderr, "Read only %d bytes but expected %d\n", read, sizeof(char) * WIDTH * HEIGHT);
+		return;
+    }
 
     int ix = 0;
     for (int y = 0; y < HEIGHT; y++)
@@ -379,7 +485,7 @@ void SaveGrid(char (*state)[WIDTH], int generations)
     FILE *fp = fopen(filename, "w");
 	if (fp == NULL)
 	{
-		fprintf(stderr, "Could not open file %s: %d\n", filename, errno);	
+		fprintf(stderr, "Could not open file %s: %d\n", filename, errno);
 		// perror("Error printed by perror");
       	// fprintf(stderr, "Error opening file: %s\n", strerror( errnum ));
       	return;
@@ -447,7 +553,7 @@ void NormalRun(char *filename)
     printf("Stable after %d Generations\n", Generation);
 }
 
-int BatchRun(int batchSize)
+void BatchRun(int batchSize)
 {
     time_t t;
     srand((unsigned) time(&t));

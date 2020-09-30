@@ -1,3 +1,4 @@
+
 CC=gcc
 AR=ar
 
@@ -12,7 +13,7 @@ life: life.o
 	$(CC) -o life life.o
 
 life.o: life.c
-	$(CC) -c -O3 life.c
+	$(CC) -c -g0 -Wall -pedantic -O3 life.c
 
 ###################################00
 
