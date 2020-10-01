@@ -558,8 +558,11 @@ void BatchRun(int batchSize)
     time_t t;
     srand((unsigned) time(&t));
 
-    int HighestGeneration = 0;
-    int LowestGeneration = 1000000;
+    int HighestGeneration = 4000;
+    bool hasHighest = false;
+
+    int LowestGeneration = 30;
+	bool hasLowest = false;
 
     int GenerationLimit = 20000;
     bool hasUnstable = false;
@@ -595,6 +598,7 @@ void BatchRun(int batchSize)
         {
             if (Generation > HighestGeneration)
             {
+            	hasHighest = true;
                 HighestGeneration = Generation;
                 CopyTo(StartState, HighestState);
 			    SaveGrid(HighestState, HighestGeneration);
@@ -602,6 +606,7 @@ void BatchRun(int batchSize)
 
             if (Generation < LowestGeneration)
             {
+            	hasLowest = true;
                 LowestGeneration = Generation;
                 CopyTo(StartState, LowestState);
 			    SaveGrid(LowestState, LowestGeneration);
@@ -619,8 +624,15 @@ void BatchRun(int batchSize)
     	SaveGrid(UnstableState, GenerationLimit);
 	}
 
-    SaveGrid(HighestState, HighestGeneration);
-    SaveGrid(LowestState, LowestGeneration);
+	if (hasHighest)
+	{
+    	SaveGrid(HighestState, HighestGeneration);
+	}
+
+	if (hasLowest)
+	{
+    	SaveGrid(LowestState, LowestGeneration);
+	}
 
     printf("\n");
     printf("Lowest: %d\n", LowestGeneration);
