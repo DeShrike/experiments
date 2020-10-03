@@ -98,3 +98,16 @@ chmod 600 authorized_keys
 
 now paste public RSA SSH key in this file
 
+# Packages
+
+Installed packqges:
+dpkg --get-selections
+
+Package size:
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+
+sudo apt-get autoremove
+
+sudo apt-get clean
+
+du -ak | sort -nr | head -100

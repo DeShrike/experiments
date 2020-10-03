@@ -1,0 +1,29 @@
+3:	2 Pairs	(3, 2, 1)
+3:	0 Triples	None
+4:	8 Pairs	(4, 3, 2, 1)
+4:	0 Triples	None
+4:	0 Quartets	None
+5:	4 Pairs	(5, 2, 3, 4, 1)
+5:	0 Triples	None
+5:	12 Quartets	(4, 5, 3, 1, 2)
+6:	16 Pairs	(6, 5, 2, 3, 4, 1)
+6:	0 Triples	None
+6:	0 Quartets	None
+7:	24 Pairs	(7, 6, 5, 2, 3, 4, 1)
+7:	0 Triples	None
+7:	0 Quartets	None
+8:	60 Pairs	(8, 5, 6, 7, 4, 3, 2, 1)
+8:	0 Triples	None
+8:	0 Quartets	None
+9:	140 Pairs	(9, 8, 5, 6, 7, 4, 3, 2, 1)
+9:	0 Triples	None
+9:	0 Quartets	None
+10:	1328 Pairs	(10, 9, 8, 5, 6, 7, 4, 3, 2, 1)
+10:	0 Triples	None
+10:	0 Quartets	None
+11:	2144 Pairs	(11, 8, 9, 10, 7, 6, 5, 2, 3, 4, 1)
+11:	0 Triples	None
+11:	0 Quartets	None
+12:	17536 Pairs	(12, 11, 8, 9, 10, 7, 6, 5, 2, 3, 4, 1)
+12:	0 Triples	None
+12:	0 Quartets	None
