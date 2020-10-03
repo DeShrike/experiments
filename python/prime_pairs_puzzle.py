@@ -59,7 +59,7 @@ def do_test(nums: int, mode):
 		f.write(f"{nums}:\t{count} {mode[1]}\t{last}\n")
 
 def main():
-	for nums in range(3, 16):
+	for nums in range(3, 11):
 		for mode in modes:
 			if nums >= mode[0]:
 				do_test(nums, mode)
