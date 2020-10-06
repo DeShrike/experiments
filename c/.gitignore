@@ -19,4 +19,5 @@ plasma
 testpin
 lines
 chartest
+kbhit
 *.o
