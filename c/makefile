@@ -1,7 +1,13 @@
 CC=gcc
 AR=ar
 
-all: forktest pipetest oserver_host pthread test1 test2 test3 test4 numtest ansitest speedtest filetest testpin branchless doomfire clock plasma bunny lines chartest kbhit
+all: part1 part2 part3 part4 part5
+
+part1: forktest pipetest oserver_host pthread chartest
+part2: test1 test2 test3 test4
+part3: numtest ansitest speedtest filetest testpin branchless bunny kbhit
+part4: doomfire clock plasma lines
+part5: pascals_triangle
 
 rmbin:
 	rm forktest
@@ -25,6 +31,15 @@ rmbin:
 	rm lines
 	rm chartest
 	rm kbhit
+	rm pascals_triangle
+
+###################################00
+
+pascals_triangle: pascals_triangle.o
+	$(CC) -o pascals_triangle pascals_triangle.o
+
+pascals_triangle.o: pascals_triangle.c
+	$(CC) -c pascals_triangle.c
 
 ###################################00
 

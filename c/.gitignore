@@ -20,4 +20,5 @@ testpin
 lines
 chartest
 kbhit
+pascals_triangle
 *.o
