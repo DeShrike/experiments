@@ -111,3 +111,17 @@ sudo apt-get autoremove
 sudo apt-get clean
 
 du -ak | sort -nr | head -100
+
+# Installing .NET 5
+
+Download from 
+https://dotnet.microsoft.com/download/dotnet/5.0
+See also https://github.com/pjgpetecodes/dotnet5pi
+
+sudo mkdir -p /usr/share/dotnet
+sudo tar zxf dotnet-sdk-5.0.100-linux-arm.tar.gz -C /usr/share/dotnet
+export DOTNET_ROOT=/usr/share/dotnet
+export PATH=$PATH:/usr/share/dotnet
+
+sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+
