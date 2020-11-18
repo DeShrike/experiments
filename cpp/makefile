@@ -1,6 +1,6 @@
 CC=c++
 
-all: hello mem cardorder fact raytracer
+all: hello mem cardorder fact raytracer nothing
 
 rmbin:
 	rm hello
@@ -8,6 +8,13 @@ rmbin:
 	rm mem
 	rm fact
 	rm raytracer
+	rm nothing
+
+nothing: nothing.o
+	$(CC) -o nothing nothing.o
+
+nothing.o: nothing.cpp
+	$(CC) -c -O3 nothing.cpp
 
 raytracer: raytracer.o
 	$(CC) -o raytracer raytracer.o
