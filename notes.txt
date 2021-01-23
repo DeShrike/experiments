@@ -125,3 +125,25 @@ export PATH=$PATH:/usr/share/dotnet
 
 sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
+# Cleaning
+
+'''
+#!/bin/bash
+echo
+echo "-> sudo apt-get update"
+sudo apt-get update
+echo
+echo "-> sudo apt-get -y upgrade"
+sudo apt-get -y upgrade
+echo
+echo "-> sudo apt-get -y dist-upgrade"
+sudo apt-get -y dist-upgrade
+echo
+echo "-> sudo apt-get -y autoremove"
+sudo apt-get -y autoremove
+echo
+echo "-> sudo apt-get clean"
+sudo apt-get clean
+echo
+'''
+
