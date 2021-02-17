@@ -147,3 +147,30 @@ sudo apt-get clean
 echo
 '''
 
+# Stop Microsoft
+
+Add to /etc/hosts: 0.0.0.0  packages.microsoft.com
+
+sudo apt-mark hold raspberry-sys-mods
+
+To undo: sudo apt-mark unhold raspberry-sys-mods
+
+cd /etc/apt/trusted.gpd.g
+
+sudo rm -vf microsoft.gpg
+
+sudo touch microsoft.gpg
+
+sudo chattr +i microsoft.gpg
+
+cd ..
+
+cd sources.list.d
+
+sudo nano vscode.list
+
+Comment the line with #
+
+sudo chattr +i vscode.list
+
+
