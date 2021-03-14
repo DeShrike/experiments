@@ -39,9 +39,12 @@ int getch()
 {
     int r;
     unsigned char c;
-    if ((r = read(0, &c, sizeof(c))) < 0) {
+    if ((r = read(0, &c, sizeof(c))) < 0)
+    {
         return r;
-    } else {
+    }
+    else
+    {
         return c;
     }
 }
@@ -50,24 +53,35 @@ int main(int argc, char *argv[])
 {
     int key;
 
-    printf("press a key: ");
+    printf("press a key: (press Enter to exit)");
     fflush(stdout);
 
     set_conio_terminal_mode();
 
-    while (1) {
-        if (kbhit()) {
+    while (1)
+    {
+        if (kbhit())
+        {
             key = getch();
 
-            if (key == 13) {
+            if (key == 13)
+            {
                 printf("\n\r");
                 break;
-            } else if (key >= 20) {
+            }
+            else if (key >= 20)
+            {
                 printf("%d = %c, ", key, key);
                 fflush(stdout);
             }
+            else
+            {
+                printf("%d = (control), ", key);
+                fflush(stdout);
+            }
         }
-        else {
+        else
+        {
             /* do some work */
             printf(".");
             usleep(50);
