@@ -42,7 +42,7 @@ print("Num4 = $num4\n");
 my $i = 0;
 my $r;
 my $total = 0;
-my $count = 1_000_000;
+my $count = 100_000_000;
 
 while ($i < $count)
 {
