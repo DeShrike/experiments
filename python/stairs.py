@@ -34,11 +34,19 @@ def steps_to(stair):
             + steps_to(stair - 1)
         )
 
-steps = 50
+def main():
+	prev = None
+	for steps in range(1, 100):
+		ways = steps_to(steps)
+		print(f"Stair with {steps} steps: ", end = "")
+		print(f"{steps_to(steps)} possible ways", end = "")
+		if prev is not None:
+			diff = ways / prev
+			print(f" = * {diff:.6f}", end = "")
+		print("")
+		prev = ways
+	print(steps_to.cache_info())
 
-print(f"Stair with {steps} steps:")
-
-print(f"{steps_to(steps)} possible ways")
-
-print(steps_to.cache_info())
+if __name__ == "__main__":
+	main()
 
