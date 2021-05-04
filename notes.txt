@@ -173,4 +173,6 @@ Comment the line with #
 
 sudo chattr +i vscode.list
 
+# Terminal Title
 
+echo -en "\033]0;$(whoami)@$(hostname)\a"
