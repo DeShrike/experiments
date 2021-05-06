@@ -1,0 +1,53 @@
+{% extends '_layout.html' %}
+
+{% block title %}
+My Books - Login
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="row">
+	<div class="col-md-6">
+		&nbsp;
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-5">
+
+		<form method="POST" action="/login">
+
+        <div class="ms-card ms-border">
+            <div class="ms-card-title">
+				<h2>Login</h2>
+            </div>
+            <div class="ms-card-content">
+				<div class="ms-form-group-inline">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" placeholder="Username" value="{{model.username}}"/>
+				</div>
+				<div class="ms-form-group-inline">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" placeholder="Password"/>
+				</div>
+				<div class="ms-form-group-inline">
+	    			<input type="checkbox" id="Checkbox">
+	    			<label for="Checkbox">Remember me</label>
+				</div>
+            </div>
+            <div class="ms-card-btn">
+				<div class="ms-form-group-inline">
+					<button class="ms-btn ms-info" type="submit">Login</button>
+				</div>
+            </div>
+        </div>
+
+		</form>
+	</div>
+</div>
+
+
+
+{% endblock %}

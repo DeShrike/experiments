@@ -1,0 +1,76 @@
+{% extends '_layout.html' %}
+
+{% block title %} 
+My Books - Test
+{% endblock %} 
+
+
+
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>This is a paragraph. with some <strong>bold text</strong> and some <i>italics text</i>.</p>
+      <a href="#">This is a link.</a>
+    </div>
+  </div>
+
+	<div class="row">
+
+    <div class="col-md">  
+  		<div class="card small">
+  			<h1>Test Card</h1>
+  			<p>Dit is een testje.</p>
+  		</div>
+    	<div class="card">
+  			<h2>Test Card</h2>
+  			<p>Dit is een testje.</p>
+    	</div>
+    	<div class="card warning">
+  			<h3>Test Card</h3>
+  			<p>Dit is een testje.</p>
+    	</div>
+    	<div class="card error">
+  			<h1>Test Card</h1>
+  			<p>Dit is een testje.</p>
+    	</div>
+    </div>
+
+  </div>
+
+
+	<div class="row">
+    <div class="col-md">
+      <button class="ms-btn">Default</button>
+      <button class="ms-btn ms-info">ms-info</button>
+      <button class="ms-btn ms-success">ms-success</button>
+      <button class="ms-btn ms-danger">ms-danger</button>
+      <button class="ms-btn ms-warning">ms-warning</button>
+    </div>
+  </div>
+
+    <div class="row">
+
+    {% for name in model.names %}
+      <h4>{{ name }}</h4>
+    {% endfor %}
+
+    {% if model.names %}
+      <h5>Data is OK</h5>
+    {% endif %}
+
+
+      {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li<{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+
+    </div>
+
+
+{% endblock %}
