@@ -1,0 +1,11 @@
+[Unit]
+Description=Disk Space Monitor Service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=python3 /home/pi/spacemonitor/spacemonitor.py
+EnvironmentFile=/home/pi/spacemonitor/config.env
+Restart=always
