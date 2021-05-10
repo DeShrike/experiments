@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>
+			{% block title %}
+				Default Title
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- See https://minicss.org/ -->
+		<!--<link rel="stylesheet" href="/css/mini-{{ model.mode }}.min.css">-->
+
+		<!-- See https://minstyle.io/docs/ -->
+		<link rel="stylesheet" href="/css/minstyle.io.css">
+
+		<script type="text/javascript" src="/js/dark.min.js"></script>
+		<script>
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			document.body.classList.add('dark');
+		}
+		</script>
+
+	</head>
+	<body>
+		<div class="ms-content">
+			<div class="ms-menu">
+			    <div class="ms-menu-logo">
+			        <p>My Books</p>
+			    </div>
+			    <nav class="ms-menu-link">
+			        <input type="checkbox" id="ms-menu-toggle">
+			        <label for="ms-menu-toggle" class="ms-menu-icon"><i class="fa fa-bars">X</i></label>
+			        <ul>
+			            <a href="/"><li>Home</li></a>
+			            <a href="/about"><li>About</li></a>
+			            <a href="/books"><li>Books</li></a>
+			            <a href="/login"><li>Login</li></a>
+			            <a href="/test"><li>Test</li></a>
+			        </ul>
+			    </nav>
+			</div>
+		</div>
+
+		<div class="container">
+		{% block body %}
+	 
+		{% endblock %}
+		</div>
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-11">
+					<hr/>
+					<p>
+						MyBooks &copy; 2021 - <a href="/privacy">Privacy</a>
+					</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		{% block javascript %}
+	 
+		{% endblock %}
+
+	</body>
+</html>
