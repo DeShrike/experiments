@@ -176,3 +176,10 @@ sudo chattr +i vscode.list
 # Terminal Title
 
 echo -en "\033]0;$(whoami)@$(hostname)\a"
+
+# Services I Have Stopped or Disabled
+
+sudo systemctl stop polkit
+sudo systemclt stop alsa-state
+sudo systemctl disable alsa-state
+sudo systemctl stop timesyncd
