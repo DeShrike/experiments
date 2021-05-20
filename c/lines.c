@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #include <string.h> // for strlen()
 #include <limits.h>
 #include <math.h>
@@ -19,7 +20,8 @@ char STORESCREEN[] = "\033[?1049h\033[H";
 char RESTORESCREEN[] = "\033[?1049l";
 
 #define WIDTH            39
-#define HEIGHT           24
+#define HEIGHT           20
+
 #define PIXELWIDTH       2
 #define PIXELHEIGHT      1
 #define COLORCOUNT       (sizeof(Colors) / sizeof(int))
@@ -27,6 +29,9 @@ char RESTORESCREEN[] = "\033[?1049l";
 #define OFFSETY          0
 
 static volatile int keepRunning = 1;
+
+// int WIDTH;
+// int HEIGHT;
 
 char Grid[HEIGHT][WIDTH];
 int CurrentColor = -1;
@@ -330,8 +335,15 @@ void intHandler(int dummy)
 
 int main(int argc, char *argv[])
 {
-	time_t t;
-	srand((unsigned) time(&t));
+    time_t t;
+    srand((unsigned) time(&t));
+
+    /*
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    WIDTH = w.ws_col / 2;
+    HEIGHT = w.ws_row;
+    */
 
     signal(SIGINT, intHandler);
 

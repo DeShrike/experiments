@@ -21,4 +21,5 @@ lines
 chartest
 kbhit
 pascals_triangle
+terminal
 *.o
