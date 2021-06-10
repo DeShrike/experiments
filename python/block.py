@@ -1,30 +1,74 @@
 import hashlib
+import json
 
-class NeuralCoinBlock():
-	def __init__(self, prev_block_hash, transaction_list):
-		self.prev_block_hash = prev_block_hash
-		self.transaction_list = transaction_list
+nullen = 6
 
-		self.block_data = "-".join(self.transaction_list) + "-" + self.prev_block_hash
-		self.block_hash = hashlib.sha256(self.block_data.encode()).hexdigest()
+class Transaction():
+	def __init__(self):
+		self.source:str = None
+		self.destination:str = None
+		self.amount:float = 1
+		self.signature:str = None
 
-t1 = "Ann send 2 NC to Mike"
-t2 = "Bob send 4.1 NC to Mike"
-t3 = "Mike send 3 NC to Bob"
-t4 = "John send 9 NC to Ann"
-t5 = "Ann send 3.5 NC to John"
-t6 = "Mike send 3 NC to Ann"
+class NatchCoinBlock():
+	def __init__(self, prev_block_hash:str, payload:str):
+		self.id:int = 0
+		self.nonce:int = 0
+		self.prev_block_hash:str = prev_block_hash
+		self.payload:str = payload
+		self.block_hash:str = None
 
-root = NeuralCoinBlock("ROOT", [t1, t2])
+	def __str__(self):
+		return self.get_data() + "\r\n" + ("" if self.block_hash is None else self.block_hash)
 
-print(root.block_data)
-print(root.block_hash)
+	def get_data(self):
+		d = {
+			"id": self.id,
+			"nonce": self.nonce,
+			"payload": self.payload,
+			"prev_block_hash": self.prev_block_hash
+		}
+		return json.dumps(d)
 
-block2 = NeuralCoinBlock(root.block_hash, [t3, t4])
-print(block2.block_data)
-print(block2.block_hash)
+def Mine(block:NatchCoinBlock) -> str:
+	nonce = 1
+	nuls = "0" * nullen
+	while True:
+		if nonce % 1000 == 0:
+			print(f"{nonce}  ", end = "\r")
+		block.nonce = nonce
+		data = block.get_data()
+		block_hash = hashlib.sha256(data.encode()).hexdigest()
 
-block3 = NeuralCoinBlock(block2.block_hash, [t5, t6])
-print(block3.block_data)
-print(block3.block_hash)
+		if block_hash[0:nullen] == nuls:
+			block.block_hash = block_hash
+			break
+		nonce += 1
+
+
+root = NatchCoinBlock("NatchCoin ROOT", "")
+Mine(root)
+
+block2 = NatchCoinBlock(root.block_hash, "Payload 2")
+Mine(block2)
+
+block3 = NatchCoinBlock(block2.block_hash, "Payload 3")
+Mine(block3)
+
+block4 = NatchCoinBlock(block3.block_hash, "Payload 4")
+Mine(block4)
+
+block5 = NatchCoinBlock(block4.block_hash, "Payload 5")
+Mine(block5)
+
+print("-----------------------------------------------------")
+print(root)
+print("-----------------------------------------------------")
+print(block2)
+print("-----------------------------------------------------")
+print(block3)
+print("-----------------------------------------------------")
+print(block4)
+print("-----------------------------------------------------")
+print(block5)
 

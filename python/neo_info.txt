@@ -22,3 +22,8 @@ scons
 cd python
 sudo python setup.py install
 cd
+
+https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage
+NeoPixels must be connected to D10, D12, D18 or D21 to work.
+pixel_pin = board.D18
+

@@ -11,6 +11,8 @@ LED_CHANNEL = 0
 
 help(PixelStrip)
 
+quit()
+
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 strip.begin()
 
