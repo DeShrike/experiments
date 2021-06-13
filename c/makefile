@@ -7,7 +7,7 @@ part1: forktest pipetest oserver_host pthread chartest
 part2: test1 test2 test3 test4
 part3: numtest ansitest speedtest filetest testpin branchless bunny kbhit
 part4: doomfire clock plasma lines
-part5: pascals_triangle terminal
+part5: pascals_triangle terminal get
 
 rmbin:
 	rm forktest
@@ -33,6 +33,7 @@ rmbin:
 	rm kbhit
 	rm pascals_triangle
 	rm terminal
+	rm get
 
 ###################################00
 
@@ -228,6 +229,14 @@ terminal: terminal.o
 
 terminal.o: terminal.c
 	$(CC) -c terminal.c
+
+###################################00
+
+get: get.o
+	$(CC) -o get get.o
+
+get.o: get.c
+	$(CC) -c get.c
 
 ###################################00
 
