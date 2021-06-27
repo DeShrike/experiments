@@ -1,12 +1,12 @@
 import time
 
-prime_count = 100_000
+prime_count = 1_000
 
 def prime_finder(amount):
 	last_print = 0
-	primes = []
+	primes = [2]
 	found = 0
-	number = 2
+	number = 3
 	while found < amount:
 		if found > last_print and found % 100 == 0:
 			print(f"Found {found} - Last: {primes[-1]}")
@@ -19,7 +19,7 @@ def prime_finder(amount):
 			primes.append(number)
 			found += 1
 
-		number += 1
+		number += 2
 	return primes
 
 
