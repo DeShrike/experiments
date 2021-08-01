@@ -1,0 +1,27 @@
+# shutdownpi.yaml
+
+pins:
+  - led1: !!int 10
+  - led2: !!int 11
+  - led3: !!int 12
+  - led4: !!int 45
+  - button1: !!int 12
+  - button2: !!int 54
+  - fan: !!int 44
+actions:
+  - button1_short:
+      - IDLE:
+        - GOTO RUNNING
+      - RUNNING:
+        - REVERSE
+      - SHUTDOWN_REQUESTED:
+        - CANCEL SHUTDOWN
+        - GOTO IDLE
+      - SHUTDOWN_STARTED:
+        - CANCEL SHUTDOWN
+  - button1_long:
+      - IDLE:
+        - GOTO RUNNING
+      - RUNNING:
+        - GOTO RUNNING
+        - GET http://192.168.0.222:8080/api/button1
