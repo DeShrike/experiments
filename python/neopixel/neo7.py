@@ -10,7 +10,7 @@ import random
 pixel_pin = board.D18
 
 # The number of NeoPixels
-num_pixels = 13
+num_pixels = 26
 
 # The order of the pixel colors - RGB or GRB.
 # Some NeoPixels have red and green reversed!
