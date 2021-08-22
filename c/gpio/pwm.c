@@ -11,23 +11,24 @@
 // (PWM1) 23 = WiringPi, 13 = BCM, 33 = Board
 // (PWM1) 24 = WiringPi, 19 = BCM, 35 = Board (Not on Pi Zero ?)
 
-#define PWM_PIN  23
+// #define PWM_PIN  23     // If you use wiringPiSetup
+#define PWM_PIN  13     // If you use wiringPiSetupGpio
 
 int main(void)
 {
   printf("Raspberry Pi wiringPi PWM test program\n");
 
-  // if (wiringPiSetupGpio() == -1)  // setup wih Broadcom numbering
-  // {
-  //   printf("wiringPiSetupGpio() failed\n");
-  //   exit(1);
-  // }
-
-  if (wiringPiSetup() == -1)  // setup with WiringPi numbering
+  if (wiringPiSetupGpio() == -1)  // setup wih Broadcom numbering
   {
-    printf("wiringPiSetup() failed\n");
+    printf("wiringPiSetupGpio() failed\n");
     exit(1);
   }
+
+  //if (wiringPiSetup() == -1)  // setup with WiringPi numbering
+  //{
+  //  printf("wiringPiSetup() failed\n");
+  //  exit(1);
+  //}
 
   // set pin to PWM
   pinMode(PWM_PIN, PWM_OUTPUT);
