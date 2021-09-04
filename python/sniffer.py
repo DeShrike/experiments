@@ -2,7 +2,7 @@ import socket
 import struct
 import textwrap
 
-#https://www.youtube.com/watch?v=oKUkbMz5q7Y
+# https://www.youtube.com/watch?v=oKUkbMz5q7Y
 
 TAB_1 = "\t - "
 TAB_2 = "\t\t - "
@@ -42,10 +42,10 @@ def tcp_packet(data):
     src_port, dest_port, sequence, acknowledgement, offset_reserved_flags = struct.unpack("! H H L L H", data[:14])
     offset = (offset_reserved_flags >> 12) * 4
     flag_urg = (offset_reserved_flags & 32) >> 5
-    flag_ack = (offset_reserved_flags & 16) >> 5
-    flag_psh = (offset_reserved_flags & 8) >> 5
-    flag_rst = (offset_reserved_flags & 4) >> 5
-    flag_syn = (offset_reserved_flags & 2) >> 5
+    flag_ack = (offset_reserved_flags & 16) >> 4
+    flag_psh = (offset_reserved_flags & 8) >> 3
+    flag_rst = (offset_reserved_flags & 4) >> 2
+    flag_syn = (offset_reserved_flags & 2) >> 1
     flag_fin = offset_reserved_flags & 1
     return src_port, dest_port, sequence, acknowledgement, flag_urg, flag_ack, flag_psh, flag_rst, flag_syn, flag_fin, data[offset:]
 
@@ -56,7 +56,7 @@ def udp_segment(data):
 def format_multi_line(prefix, string, size = 80):
     size -= len(prefix)
     if isinstance(string, bytes):
-        string = "".join(r"\x{:02x}".format(byte) for byte in string)
+        string = "".join((f" {chr(byte)} " if byte >= 32 and byte < 127 else f"\\x{byte:02x}") for byte in string)
         if size % 2:
             size -= 1
     return "\n".join([prefix + line for line in textwrap.wrap(string, size)])
@@ -64,7 +64,7 @@ def format_multi_line(prefix, string, size = 80):
 def main():
     conn = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(3))
     pcount = 0
-    
+
     while True:
         if pcount >= 100:
             break
@@ -93,7 +93,7 @@ def main():
                 print(TAB_4 + f"Sequence: {sequence}, Acknowledgement: {acknowledgement}")
                 print(TAB_4 + "Flags:")
                 print(TAB_5 + f"URG: {flag_urg}, ACK: {flag_ack}, PSH: {flag_psh}; RST: {flag_rst}, SYN: {flag_syn}, FIN: {flag_fin}")
-                print(format_multi_line(DATA_TAB_5, data))
+                print(format_multi_line(DATA_TAB_4, data))
             elif proto == 17:
                 src_port, dest_port, size, data = udp_segment(data)
                 print(TAB_3 + "UDP Packet:")
