@@ -47,9 +47,16 @@ logo_output_list = [
 #splash_background_color = (255, 255, 255)
 
 # L&S #BC1823   (188, 24, 35)
-output_folder = "lns"
-logo_file = "lns-logo.png"
-accent_color = (188, 24, 35)
+#output_folder = "lns"
+#logo_file = "lns-logo.png"
+#accent_color = (188, 24, 35)
+#logo_background_color = (255, 255, 255)
+#splash_background_color = (255, 255, 255)
+
+# TECHN #BC1823   (188, 16, 24)
+output_folder = "techn"
+logo_file = "techn-logo.png"
+accent_color = (188, 16, 24)
 logo_background_color = (255, 255, 255)
 splash_background_color = (255, 255, 255)
 
