@@ -7,7 +7,7 @@ part1: forktest pipetest oserver_host pthread chartest
 part2: test1 test2 test3 test4
 part3: numtest ansitest speedtest filetest testpin branchless bunny kbhit
 part4: doomfire clock plasma lines
-part5: pascals_triangle terminal get
+part5: pascals_triangle terminal get donut
 
 rmbin:
 	rm forktest
@@ -34,6 +34,7 @@ rmbin:
 	rm pascals_triangle
 	rm terminal
 	rm get
+	rm donut
 
 ###################################00
 
@@ -237,6 +238,14 @@ get: get.o
 
 get.o: get.c
 	$(CC) -c get.c
+
+###################################00
+
+donut: donut.o
+	$(CC) -o donut donut.o -lm
+
+donut.o: donut.c
+	$(CC) -c donut.c -Wno-implicit-int
 
 ###################################00
 
